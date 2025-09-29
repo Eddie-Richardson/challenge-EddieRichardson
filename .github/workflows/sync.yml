@@ -1,0 +1,27 @@
+name: Sync from Club Repo
+
+on:
+  schedule:
+    - cron: "0 9 * * 0"   # every Sunday at 9:00 UTC = 4:00 AM EST
+  workflow_dispatch:
+
+permissions:
+  contents: write   # allow pushing into your repo
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mirror club repo into personal repo
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+
+          # Clone the club repo as a bare mirror
+          git clone --mirror https://github.com/codingUnited/challenge-EddieRichardson.git
+
+          # Enter the mirror folder
+          cd challenge-EddieRichardson.git
+
+          # Push everything to your personal repo
+          git push --mirror https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Eddie-Richardson/challenge-EddieRichardson.git
