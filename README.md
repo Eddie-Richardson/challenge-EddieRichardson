@@ -12,3 +12,9 @@ This repository automatically syncs from the club repo every Sunday at 4 AM ES
   - Future challenges will follow the same pattern: `challenge5-tier1`, `challenge5-tier2`, etc.
 
 Each tier branch represents a progressively more advanced version of the same challenge.
+
+## How to Browse
+
+- Start with the lowest tier branch (e.g. `challenge4-tier1`) to see the baseline solution.  
+- Move up through `tier2` and `tier3` to see progressively more advanced implementations.  
+- Each challenge is isolated by branch naming, so you can check out any `challengeX-tierY` branch directly.
