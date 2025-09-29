@@ -12,16 +12,22 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Mirror club repo into personal repo
+      - name: Configure Git
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
 
-          # Clone the club repo as a bare mirror
-          git clone --mirror https://github.com/codingUnited/challenge-EddieRichardson.git
+      - name: Clone club repo
+        run: |
+          git clone https://github.com/codingUnited/challenge-EddieRichardson.git source
+          cd source
 
-          # Enter the mirror folder
-          cd challenge-EddieRichardson.git
+          # Push each branch individually (excluding workflow)
+          for branch in $(git for-each-ref --format='%(refname:short)' refs/heads/); do
+            if [ "$branch" != "workflow" ]; then
+              git push --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Eddie-Richardson/challenge-EddieRichardson.git $branch
+            fi
+          done
 
-          # Push everything to your personal repo
-          git push --mirror https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Eddie-Richardson/challenge-EddieRichardson.git
+          # Push all tags
+          git push --tags --force https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Eddie-Richardson/challenge-EddieRichardson.git
