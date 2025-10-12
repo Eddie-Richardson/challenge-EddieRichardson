@@ -21,7 +21,7 @@ jobs:
         run: |
           git clone https://github.com/codingUnited/challenge-EddieRichardson.git source
           cd source
-          git push --mirror https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Eddie-Richardson/challenge-EddieRichardson.git
+          git fetch --all
 
           ###
           # Push each branch individually (excluding workflow)
