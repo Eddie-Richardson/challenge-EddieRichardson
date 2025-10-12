@@ -38,6 +38,11 @@ Challenges are listed in numerical order as they’re released by the club.
 - [Tier 2](https://github.com/Eddie-Richardson/challenge-EddieRichardson/tree/challenge4-tier2) – Extends Tier 1 by adding a Flask web form to send a custom message.
 - [Tier 3](https://github.com/Eddie-Richardson/challenge-EddieRichardson/tree/challenge4-tier3) – Work in progress: currently a clone of Tier 2, planned to become a mobile app that interacts with the Flask web service.
 
+
+### Challenge 5 – Port‑Fix (Python 3.11, pytest, pytest‑cov)
+***Theme: Port and Fix – reverse‑engineer and modernize a legacy C++ program into a stable, testable Python package.***
+- [Tier 1](https://github.com/Eddie-Richardson/challenge-EddieRichardson/tree/challenge5-tier1) – baseline implementation of the legacy port with CLI, modularized core (`users`, `books`, `engine`), and full test suite achieving 100% coverage.
+
 ---
 
 <!-- Future challenges can be added here in the same format -->
