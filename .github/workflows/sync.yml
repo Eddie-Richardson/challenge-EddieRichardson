@@ -25,10 +25,10 @@ jobs:
           # Make sure we have every branch from the club repo
           git fetch --all
       
-          # Push each branch from the club repo into your personal repo, skipping workflow
-          for ref in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/); do
+          # List only real remote branches (skip HEAD and anything weird)
+          for ref in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -v 'HEAD$'); do
             branch=${ref#origin/}
-            if [ "$branch" != "workflow" ] && [ "$branch" != "HEAD" ] && [ -n "$branch" ]; then
+            if [ "$branch" != "workflow" ] && [ -n "$branch" ]; then
               git push --force \
                 https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Eddie-Richardson/challenge-EddieRichardson.git \
                 refs/remotes/origin/$branch:refs/heads/$branch
